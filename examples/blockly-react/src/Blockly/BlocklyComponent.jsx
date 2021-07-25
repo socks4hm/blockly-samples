@@ -28,6 +28,9 @@ import Blockly from 'blockly/core';
 import locale from 'blockly/msg/en';
 import 'blockly/blocks';
 
+// import * as Blockly from "./Blockly";
+import * as BlockDynamicConnection from "./block-dynamic-connection";
+
 Blockly.setLocale(locale);
 
 class BlocklyComponent extends React.Component {
@@ -39,6 +42,9 @@ class BlocklyComponent extends React.Component {
 
     componentDidMount() {
         const { initialXml, children, ...rest } = this.props;
+
+        BlockDynamicConnection.overrideOldBlockDefinitions();
+
         this.primaryWorkspace = Blockly.inject(
             this.blocklyDiv.current,
             {
